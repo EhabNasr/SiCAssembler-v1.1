@@ -1,0 +1,38 @@
+1000        PROB1    START   1000
+1000 001049          LDA     ZERO
+1003 e01048 TESTDEV  TD      INDEV
+1006 301003          JEQ     TESTDEV
+1009 d81048          RD      INDEV
+100c 0c105a          STA     ALPHA
+100f 00104c          LDA     ONE
+1012 0c1060          STA     ACMLTR
+1015 001060 LOOP0    LDA     ACMLTR
+1018 18104c          ADD     ONE
+101b 28105a          COMP    ALPHA
+101e 301036          JEQ     TRUE
+1021 0c1060          STA     ACMLTR
+1024 00105a          LDA     ALPHA
+1027 241060          DIV     ACMLTR
+102a 201060          MUL     ACMLTR
+102d 28105a          COMP    ALPHA
+1030 30103f          JEQ     FALSE
+1033 381015          JLT     LOOP0
+1036 001069 TRUE     LDA     =x'1'
+1039 0c1063          STA     ISPRIME
+103c 3c1066          J       RETURN
+103f 001049 FALSE    LDA     ZERO
+1042 0c1063          STA     ISPRIME
+1045 3c1066          J       RETURN
+1048 F3     INDEV    BYTE    X'F3'
+1049 000000 ZERO     WORD    0
+104c 00000f ONE      WORD    15
+104f 48454c HELLO    BYTE    c'HELLO WORLD'
+     4c4f20
+     574f52
+     4c44
+105a        ALPHA    RESW    1
+105d        TEMP     RESW    1
+1060        ACMLTR   RESW    1
+1063        ISPRIME  RESW    1
+1066        RETURN   END     PROB1
+1069        *        =x'1'   
